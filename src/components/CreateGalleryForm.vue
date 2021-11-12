@@ -42,7 +42,7 @@ export default {
             form.append('keywords', this.keywords);
             form.append('description', this.description);
 
-            if(this.gallery.id) {
+            if(this.gallery?.id) {
                 this.$api.post('/gallery/update/' + this.gallery.id, form).then(res => {
                     this.clearForm();
                     console.log(res);
