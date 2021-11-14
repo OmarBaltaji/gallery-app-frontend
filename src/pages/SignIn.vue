@@ -2,7 +2,10 @@
     <div class="screen-center-items">
         <Card class="p-p-5">
             <template #title>
-                <h3 class="p-mb-5">Welcome to Gallery Management</h3>
+                <div  class="p-text-center">
+                    <h3 class="p-mb-5">Welcome to Gallery Management</h3>
+                    <h4>Sign in straight away with Google!</h4>
+                </div>
             </template>
             <template #content>
                 <div class="p-text-center">
@@ -46,24 +49,19 @@ export default {
                 .then((res) => {
                     console.log('response from server', res.data);
                     const token = JSON.parse(res.data[1]);
+                    const expiresIn = token.expires_in * 1000;
+                    const now = new Date();
+                    const expireDate = new Date(now.getTime() + expiresIn);
                     this.$cookies.set('access_token', token.access_token, token.expires_in);
-                    this.$router.push('/');
+                    localStorage.setItem('expiresIn', expireDate);
+
+                    this.$store.dispatch("login", expiresIn);
                 });
             } catch (err) {
                 console.error(err);
             }   
        
         },
-        async logout() {
-            try {
-                const result = await this.$gAuth.signOut();
-                this.$cookies.remove('access_token');
-                console.log(result);
-            } catch (err) {
-                console.error(err);
-            }
-          
-        }
     },
     created() {
         const token = this.$cookies.get('access_token');
