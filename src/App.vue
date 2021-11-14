@@ -20,7 +20,18 @@ export default {
   name: 'App',
   data() {
     return {
-      items: [],
+      items: [
+        {
+          label:'Home',
+          icon:'pi pi-fw pi-home',
+          command: () => {
+            if(this.$router.currentRoute.name !== 'Home') {
+              this.$router.push('/')
+            }
+          },
+          visible: () => this.loggedIn
+        }
+      ]
     }
   },
   methods: {
@@ -48,11 +59,6 @@ export default {
       if(now > expiresMs) {
         this.$store.dispatch('logout');
       } else {
-        this.items.push({
-          label:'Home',
-          icon:'pi pi-fw pi-home',
-          url: '/'
-        });
         this.$store.dispatch('login', expiresMs - now)
         console.log(this.items);
       }
@@ -64,10 +70,23 @@ export default {
   }, 
   computed: {
     loggedIn() {
-      console.log(this.$store.getters.loginState);
       return this.$store.getters.loginState;
     }
   },
+  updated() {
+    if(this.loggedIn && this.items.length === 0) {
+      this.items.push({
+        label:'Home',
+        icon:'pi pi-fw pi-home',
+        command: () => {
+          if(this.$router.currentRoute.name !== 'Home') {
+            this.$router.push('/')
+          }
+        },
+        visible: () => this.loggedIn
+      });
+    }
+  }
 }
 </script>
 
