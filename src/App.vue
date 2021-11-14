@@ -76,7 +76,7 @@ export default {
     padding: 0;
     margin: 0;
     font-family:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    background: url('./assets/background11.jpg') no-repeat center 66%; 
+    background: url('./assets/background12.jpg') no-repeat center center; 
     background-size: cover;
   }
 
