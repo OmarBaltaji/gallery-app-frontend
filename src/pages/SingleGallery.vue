@@ -2,10 +2,10 @@
 <div>
     <div class="p-p-5 p-mb-5 hero-section-wrapper">
         <div class="p-d-flex p-ai-end p-jc-center">
-            <h1 class="p-mr-4 gallery-name">{{ gallery.name }}</h1>
+            <h1 class="gallery-name">{{ gallery.name }}</h1>
         </div>
         <div class="p-text-italic p-text-center p-mb-3"><span class="text-muted">Created: {{ gallery.created_at }}</span></div>
-         <div class="p-text-italic p-text-center p-mb-3"><span class="p-text-bold">Description:</span> &nbsp; {{ gallery.description }}</div>
+         <div class="p-text-center p-mb-3"><span class="p-text-bold">Description:</span> &nbsp; {{ gallery.description }}</div>
         <div class="p-text-center">
             <div class="p-text-italic"><span class="p-text-bold">Keywords:</span> &nbsp; {{ gallery.keywords }}</div>
         </div>
@@ -90,7 +90,7 @@ methods: {
             icon: 'pi pi-exclamation-triangle',
             acceptClass: 'p-button-danger',
             accept: () => {
-                this.$api.post('/picture/delete/' + id).then(() =>         this.fetchGalleryPictures());
+                this.$api.post('/picture/delete/' + id).then(() => this.fetchGalleryPictures());
             },
             reject: () => {
                 // empty
@@ -127,6 +127,8 @@ components: {CreateGalleryForm}
 
     .hero-section-wrapper {
         position: relative;
+        background: url('../assets/background.jpg') no-repeat center 40%;
+        background-size: cover;
     }
 
     .edit-gallery-btn {
