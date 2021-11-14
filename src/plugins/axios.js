@@ -20,7 +20,8 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-    const token = document.cookie.split('access_token=')[1];
+    // const token = document.cookie.split('access_token=')[1];
+    const token = Vue.$cookies.get('access_token');
     if(token) {
         config.headers['Authorization'] = 'Bearer ' + token;
     }
