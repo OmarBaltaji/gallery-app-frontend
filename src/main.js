@@ -2,8 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './routes';
 import GAuth from 'vue-google-oauth2';
-import { guest, api } from './axios';
-import { cookie } from './cookies';
+import { guest, api } from './plugins/axios';
+import { cookie } from './plugins/cookies';
+import { store } from './store/store';
 
 import PrimeVue  from 'primevue/config';
 import Button from 'primevue/button';
@@ -14,6 +15,9 @@ import InputText from 'primevue/inputtext';
 import Textarea from 'primevue/textarea';
 import ConfirmDialog from 'primevue/confirmdialog';
 import ConfirmationService from 'primevue/confirmationservice';
+import Menubar from 'primevue/menubar';
+import ImagePreview from 'primevue/imagepreview';
+import Message from 'primevue/message';
 
 
 import 'primevue/resources/themes/saga-blue/theme.css';      //theme
@@ -39,11 +43,15 @@ Vue.component('Dialog', Dialog);
 Vue.component('InputText', InputText);
 Vue.component('Textarea', Textarea);
 Vue.component('ConfirmDialog', ConfirmDialog);
+Vue.component('Menubar', Menubar);
+Vue.component('ImagePreview', ImagePreview);
+Vue.component('Message', Message);
 
 new Vue({
   router,
   guest,
   api,
   cookie,
+  store,
   render: h => h(App),
 }).$mount('#app')
