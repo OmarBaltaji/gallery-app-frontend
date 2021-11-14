@@ -40,7 +40,7 @@ export default {
 
   .p-card {
     background: url('../assets/2059714-200.png') center center no-repeat !important;
-    background-color: #e09393  !important;
+    background-color: #d2d2d2  !important;
     position: relative;
   }
 
