@@ -2,11 +2,12 @@
   <div class="p-p-5 m-m-5">
       <!-- <FileUpload name="demo[]" url="./upload" accept="image/*" @uploader="uploadImage">
       </FileUpload> -->
-    <Button @click="openCreateForm()" class="p-mb-5">Create Gallery</Button>
+    <Button @click="openCreateForm()" class="p-mb-5 p-button-rounded" label="Create Gallery" icon="pi pi-plus-circle" />
 
-    <Dialog :visible.sync="displayModal"  :style="{width: '40vw'}" :modal="true">
+    <!-- Create Modal -->
+    <Dialog :visible.sync="displayModal"  :style="{width: '450px'}" :modal="true">
         <template #header>
-            <h3>Create a gallery</h3>
+            <h1>Create A Gallery</h1>
         </template>
         <CreateGalleryForm @saved="newGallery"></CreateGalleryForm>
     </Dialog>
@@ -27,23 +28,6 @@ export default {
         }
     },
     methods: {
-        uploadImage(event) {
-            if (event.target.files && event.target.files[0]) {
-                const prefixFiletype = event.target.files[0].type.toString()
-                if (prefixFiletype.indexOf('image/') !== 0) {
-                    alert('This file is not an image');
-                    document.getElementById('input_file').value = '';
-                    return
-                }
-            } else {
-                alert('Something wrong with input file');
-            }
-
-            const formData = new FormData();
-            formData.append('picture', event.target.files[0]);
-
-            // this.$api.post('/upload', )
-        },
         fetchUserGalleries() {
             this.$api.get('/gallery').then(res => {
                 console.log(res.data);
@@ -52,29 +36,13 @@ export default {
         },
         fetchUser() {
             this.$api.get('/user').then(res => {
-                console.log(res);
+                console.log(res.data);
             })
         },
         newGallery() {
             this.displayModal = false;
             this.fetchUserGalleries();
         },
-        // createGallery() {
-        //     const form = new FormData();
-        //     form.append('name', this.name);
-        //     form.append('keywords', this.keywords);
-        //     form.append('description', this.description);
-        //     form.append('user_id', 1);
-        //     console.log(this.description);
-        //     console.log(this.keywords);
-
-        //     this.$api.post('/gallery', form).then(res => {
-        //         this.displayModal = false;
-        //         this.clearForm();
-        //         this.fetchUserGalleries();
-        //         console.log(res)
-        //     });
-        // },
         openCreateForm() {
             this.displayModal = true;
         },
