@@ -16,7 +16,7 @@ const router = new Router({
         {
             path: '/signin',
             component: SignIn,
-            name: 'Sign In'
+            name: 'SignIn'
         },
         {
             path: '/gallery/:id',
