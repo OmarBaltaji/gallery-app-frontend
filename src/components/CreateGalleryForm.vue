@@ -1,26 +1,18 @@
 <template>
     <form @submit.prevent="createGallery()">
         <div class="p-fluid">
+            <Message severity="error" v-if="errorMessage" :closable="false" :key="errorMessage">{{ errorMessage }}</Message>
             <div class="p-field">
-                <span class="p-float-label">
-                    <InputText name="name" type="text" id="name" v-model="name" />
-                    <label for="name">Gallery Name</label>
-                </span>
+                <InputText placeholder="Gallery Name" name="name" type="text" id="name" maxlength="20" v-model="name" />
             </div>
             <div class="p-field">
-                <span class="p-float-label">
-                    <InputText name="keywords" type="text" id="keywords" v-model="keywords" />
-                    <label for="keywords">Keywords</label>
-                </span>
+                <InputText placeholder="Keywords" name="keywords" type="text" id="keywords" v-model="keywords" />
             </div>
             <div class="p-field">
-                <span class="p-float-label">
-                    <Textarea name="description" v-model="description" rows="5" style="{width: 100%}"/>
-                    <label for="description">Description</label>
-                </span>
+                <Textarea name="description" placeholder="Description" v-model="description" rows="5" style="{width: 100%}"/>
             </div>
 
-            <Button type="submit" :disabled="!name || !keywords">Submit</Button>
+            <Button label="Submit" class="p-text-center" type="submit" :disabled="!name || !keywords" />
         </div>
     </form>
 </template>
@@ -32,6 +24,7 @@ export default {
             name: '',
             keywords: '',
             description: '',
+            errorMessage: null,
         }
     },
     props: ['gallery'],
@@ -46,11 +39,16 @@ export default {
                 this.$api.post('/gallery/update/' + this.gallery.id, form).then(res => {
                     this.clearForm();
                     console.log(res);
+                }).catch(err => {
+                    this.errorMessage = err.response.data.messages.error;
+                    console.log(err.response);
                 });
             } else {
                 this.$api.post('/gallery', form).then(res => {
                     this.clearForm();
                     console.log(res)
+                }).catch(err => {
+                    this.errorMessage = err.response.data.messages.error;
                 });
             }
 
