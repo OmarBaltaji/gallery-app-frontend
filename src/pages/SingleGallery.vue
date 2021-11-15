@@ -17,7 +17,7 @@
         <template #header>
             <h1>Edit A Gallery</h1>
         </template>
-        <CreateGalleryForm @saved="updateGallery" :gallery="gallery" ></CreateGalleryForm>
+        <GalleryForm @saved="updateGallery" :gallery="gallery" ></GalleryForm>
     </Dialog>
 
     <div class="p-px-5">
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import CreateGalleryForm from '../components/CreateGalleryForm.vue';
+import GalleryForm from '../components/GalleryForm.vue';
 import moment from 'moment';
 export default {
 data() {
@@ -102,7 +102,7 @@ created() {
     this.fetchSingleGallery();
     this.fetchGalleryPictures();
 },
-components: {CreateGalleryForm}
+components: {GalleryForm}
 }
 </script>
 

@@ -9,17 +9,17 @@
         <template #header>
             <h1>Create A Gallery</h1>
         </template>
-        <CreateGalleryForm @saved="newGallery"></CreateGalleryForm>
+        <GalleryForm @saved="newGallery"></GalleryForm>
     </Dialog>
 
-    <Gallery :galleries="galleries" @delete="deleteGallery" />
+    <Galleries :galleries="galleries" @delete="deleteGallery" />
     <ConfirmDialog></ConfirmDialog>
   </div>
 </template>
 
 <script>
-import Gallery from '../components/Gallery.vue';
-import CreateGalleryForm from '../components/CreateGalleryForm.vue';
+import Galleries from '../components/Galleries.vue';
+import GalleryForm from '../components/GalleryForm.vue';
 export default {
     data() {
         return {
@@ -73,7 +73,7 @@ export default {
         this.fetchUser();
         this.fetchUserGalleries();
     },
-    components: {Gallery, CreateGalleryForm}
+    components: {Galleries, GalleryForm}
 }
 </script>
 
