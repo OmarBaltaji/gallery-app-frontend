@@ -39,9 +39,9 @@ export default {
                 const userProfile = googleUser.getBasicProfile();
 
                 const formData = new FormData();
-                formData.append('name', userProfile.Se);
-                formData.append('username', userProfile.Tt);
-                formData.append('oauth_uid', userProfile.hT);
+                formData.append('name', userProfile.getName());
+                formData.append('username', userProfile.getEmail());
+                formData.append('oauth_uid', userProfile.getId());
                 formData.append('password', tokenInfo.access_token);
                 formData.append('grant_type', 'password');
 
