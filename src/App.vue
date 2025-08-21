@@ -12,6 +12,10 @@
       </template>
     </Menubar>
     <router-view></router-view>
+    <random-emoji />
+    <random-number />
+    <random-quote />
+    <random-quote2 />
   </div>
 </template>
 
