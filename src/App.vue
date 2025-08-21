@@ -16,6 +16,7 @@
     <random-number />
     <random-quote />
     <random-quote2 />
+    <random-joke />
   </div>
 </template>
 
