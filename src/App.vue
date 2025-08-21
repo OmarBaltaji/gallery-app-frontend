@@ -1,4 +1,4 @@
-<template>
+   <template>
   <div id="app">
     <Menubar :model="items" :key="loggedIn">
       <template #start>
@@ -48,6 +48,7 @@ export default {
     }
   },
   created() {
+    console.log("test");
     const token = this.$cookies.get('access_token');
     const expires = localStorage.getItem('expiresIn');
 
